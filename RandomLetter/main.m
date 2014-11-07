@@ -8,10 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-int main(int argc, const char * argv[]) {
-    @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+int main(int argc, const char *argv[])
+{
+    @autoreleasepool
+    {
+        NSMutableArray *letters = [NSMutableArray array];
+        for (char letter = 'a'; letter <= 'z'; letter++)
+        {
+            [letters addObject:[NSString stringWithFormat:@"%c", letter]];
+        }
+        NSString *randomLetter = letters[arc4random_uniform([letters count])];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+        NSLog(@"The random letter for %@ is %@", [dateFormatter stringFromDate:[NSDate date]], randomLetter);
     }
     return 0;
 }
